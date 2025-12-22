@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "tsup test/index.ts --out-dir test-dist --format cjs && node test-dist/index.js",
-    "script": "tsup scripts/index.ts --out-dir test-dist --format cjs && node test-dist/index.js",
+    "test": "tsup test/index.ts --out-dir test-dist --format esm && node test-dist/index.mjs",
+    "script": "tsup scripts/index.ts --out-dir test-dist --format esm && node test-dist/index.mjs",
     "typecheck": "tsc --noEmit --composite false",
     "prepare": "tsup-node"
   },
