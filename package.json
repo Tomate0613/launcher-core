@@ -1,0 +1,36 @@
+{
+  "name": "tomate-launcher-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "tsup test/index.ts --out-dir test-dist --format cjs && node test-dist/index.js",
+    "update-versions": "tsup scripts/versions.ts --out-dir test-dist --format cjs && node test-dist/versions.js",
+    "typecheck": "tsc --noEmit --composite false",
+    "prepare": "tsup-node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.0",
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/cli-progress": "^3.11.6",
+    "@types/node": "^24.6.1",
+    "chalk": "^5.6.2",
+    "cli-progress": "^3.12.0",
+    "multi-progress-bars": "^5.0.3",
+    "tomate-loaders": "github:Tomate0613/tomate-loaders",
+    "tslib": "^2.8.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.12.2"
+  },
+  "files": [
+    "dist"
+  ]
+}
