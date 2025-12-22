@@ -35,7 +35,7 @@ importers:
         version: 5.0.3
       tomate-loaders:
         specifier: github:Tomate0613/tomate-loaders
-        version: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/5aa43b4874e507d12bdf4107cdcf42b1af1fd48f
+        version: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/882e1c9aca7e387b31824229c7a1352abc93ee37
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -753,8 +753,8 @@ packages:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
 
-  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/5aa43b4874e507d12bdf4107cdcf42b1af1fd48f:
-    resolution: {tarball: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/5aa43b4874e507d12bdf4107cdcf42b1af1fd48f}
+  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/882e1c9aca7e387b31824229c7a1352abc93ee37:
+    resolution: {tarball: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/882e1c9aca7e387b31824229c7a1352abc93ee37}
     version: 2.0.2
 
   tr46@1.0.1:
@@ -1417,7 +1417,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
 
-  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/5aa43b4874e507d12bdf4107cdcf42b1af1fd48f:
+  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/882e1c9aca7e387b31824229c7a1352abc93ee37:
     dependencies:
       '@types/xml2js': 0.4.14
       axios: 1.12.2
