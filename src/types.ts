@@ -348,12 +348,12 @@ export type LaunchOptions = {
 
 type Authorization = {
   access_token: string;
-  client_token: string;
+  client_token?: string;
   uuid: string;
-  name: string;
-  user_properties: Partial<any>;
+  name?: string;
+  user_properties?: Partial<any>;
   meta?: {
-    type: "mojang" | "msa";
+    type: "mojang" | "msa" | "legacy";
     xuid?: string;
     demo?: boolean;
     clientId?: string;
