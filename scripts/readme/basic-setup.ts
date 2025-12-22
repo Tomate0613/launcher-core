@@ -1,8 +1,3 @@
-# Tomate Launcher Core
-
-## Basic Setup
-
-```ts
 import { loader } from "tomate-loaders";
 import { Launcher } from "../../src";
 import { Auth } from "msmc";
@@ -27,4 +22,3 @@ launcher.launch({
   },
   authorization: token.mclc(),
 });
-```
