@@ -16,19 +16,19 @@
   "devDependencies": {
     "@types/adm-zip": "^0.5.7",
     "@types/cli-progress": "^3.11.6",
-    "@types/node": "^24.6.1",
+    "@types/node": "^24.10.4",
     "chalk": "^5.6.2",
     "cli-progress": "^3.12.0",
     "multi-progress-bars": "^5.0.3",
     "tomate-loaders": "github:Tomate0613/tomate-loaders",
     "tslib": "^2.8.1",
-    "tsup": "^8.5.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "uuid": "^13.0.0"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "axios": "^1.12.2"
+    "axios": "^1.13.2"
   },
   "files": [
     "dist"
