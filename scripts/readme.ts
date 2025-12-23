@@ -1,14 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const readmeDirectoryPath = path.join("scripts", "readme");
-const templatePath = path.join(readmeDirectoryPath, "README.md");
+const examplesDirectory = path.join("examples");
+const templatePath = path.join(examplesDirectory, "README.template.md");
 const outputPath = "README.md";
 
 let template = fs.readFileSync(templatePath, "utf-8");
 
 template = template.replace(/{{\s*(.+?)\s*}}/g, (_, filePath) => {
-  const fullPath = path.resolve(readmeDirectoryPath, `${filePath}.ts`);
+  const fullPath = path.resolve(examplesDirectory, `${filePath}.ts`);
 
   if (!fs.existsSync(fullPath)) {
     console.error(`File not found: ${fullPath}`);

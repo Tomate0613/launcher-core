@@ -49,12 +49,6 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
 
-  scripts/readme:
-    dependencies:
-      msmc:
-        specifier: ^5.0.5
-        version: 5.0.5
-
 packages:
 
   '@esbuild/aix-ppc64@0.27.2':
@@ -562,25 +556,12 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  msmc@5.0.5:
-    resolution: {integrity: sha512-1rJWxziHiTlVVZgUtxOd7jRl97LHVD4D0ZtQx9kiwe7zzHeVcPG1xRxQF+9+9AqQfxAvO6athl43Z4yqeVJ0lA==}
-    engines: {node: '>=14.17.3'}
-
   multi-progress-bars@5.0.3:
     resolution: {integrity: sha512-/EzDF3NVeYTFLoLQ33fgvM6933rS2MZlEPWBivsc94Y/lj2xpWOs/DpJrCG+XrPOo4/P6DW+oxZyKnRKw0d/nQ==}
     engines: {node: '>14.18.0'}
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
-
-  node-fetch@2.7.0:
-    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
 
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
@@ -683,9 +664,6 @@ packages:
     resolution: {tarball: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/882e1c9aca7e387b31824229c7a1352abc93ee37}
     version: 2.0.2
 
-  tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-
   tree-kill@1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
@@ -729,12 +707,6 @@ packages:
   uuid@13.0.0:
     resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
     hasBin: true
-
-  webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-
-  whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
   xml2js@0.6.2:
     resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
@@ -1122,13 +1094,6 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msmc@5.0.5:
-    dependencies:
-      node-fetch: 2.7.0
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - encoding
-
   multi-progress-bars@5.0.3:
     dependencies:
       chalk: 5.6.2
@@ -1140,10 +1105,6 @@ snapshots:
       any-promise: 1.3.0
       object-assign: 4.1.1
       thenify-all: 1.6.0
-
-  node-fetch@2.7.0:
-    dependencies:
-      whatwg-url: 5.0.0
 
   object-assign@4.1.1: {}
 
@@ -1256,8 +1217,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  tr46@0.0.3: {}
-
   tree-kill@1.2.2: {}
 
   ts-interface-checker@0.1.13: {}
@@ -1298,13 +1257,6 @@ snapshots:
   undici-types@7.16.0: {}
 
   uuid@13.0.0: {}
-
-  webidl-conversions@3.0.1: {}
-
-  whatwg-url@5.0.0:
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
 
   xml2js@0.6.2:
     dependencies:

@@ -4,7 +4,7 @@
 
 ```ts
 import { loader } from "tomate-loaders";
-import { Launcher } from "../../src";
+import { Launcher } from "tomate-launcher-core";
 import { Auth } from "msmc";
 
 const launcher = new Launcher({
