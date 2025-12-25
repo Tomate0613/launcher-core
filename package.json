@@ -4,10 +4,11 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "tsup test/index.ts --out-dir test-dist --format esm && node test-dist/index.mjs",
-    "script": "tsup scripts/index.ts --out-dir test-dist --format esm && node test-dist/index.mjs",
+    "test": "tsup test/index.ts --out-dir test-dist --format cjs && node test-dist/index.js",
+    "script": "tsup scripts/index.ts --out-dir script-dist --format cjs && node script-dist/index.js",
     "typecheck": "tsc --noEmit --composite false",
-    "prepare": "tsup-node"
+    "prepare": "tsup-node",
+    "build": "tsup-node"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +29,8 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "tomate-launcher-core": "link:"
   },
   "files": [
     "dist"

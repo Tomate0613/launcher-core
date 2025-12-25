@@ -10,7 +10,6 @@ import {
   Version as Version,
 } from "./types";
 import { ForgeHandler } from "./forge";
-import { EventEmitter } from "node:stream";
 import { DownloadManager } from "./downloads";
 import { getPaths, Paths } from "./paths";
 import { Handler } from "./handler";
@@ -22,6 +21,7 @@ import {
 } from "./java";
 import { TaskManager } from "./tasks";
 import { getJavaTarget } from "./os";
+import EventEmitter from "node:events";
 
 export class Launcher extends EventEmitter<Events> {
   private tasks: TaskManager;

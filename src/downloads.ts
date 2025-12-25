@@ -1,6 +1,6 @@
 import path from "node:path";
 import { IncomingMessage } from "node:http";
-import axios, { AxiosInstance } from "axios";
+import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import EventEmitter from "node:events";
 import { ProgressEventName } from "./types";
 import {
@@ -85,9 +85,9 @@ export class DownloadManager extends EventEmitter<DownloadEvents> {
       axiosInstance || axios.create({ httpAgent, httpsAgent });
   }
 
-  public get<T = any, R = axios.AxiosResponse<T>, D = any>(
+  public get<T = any, R = AxiosResponse<T>, D = any>(
     url: string,
-    config?: axios.AxiosRequestConfig<D>,
+    config?: AxiosRequestConfig<D>,
   ): Promise<R> {
     return this.axiosInstance.get(url, config);
   }
