@@ -13,13 +13,18 @@ function parseRule(options: LauncherOptions, rule: Rule) {
     // }
   }
 
+  // TODO Figure out if this impletation even matches the intended goal
   if (rule.features) {
-    const featureFlags = Object.keys(rule.features);
+    if (!options.features) {
+      v = false;
+    } else {
+      const featureFlags = Object.keys(rule.features);
 
-    v = true;
-    for (const feature of options.features ?? []) {
-      if (!featureFlags.includes(feature)) {
-        v = false;
+      v = true;
+      for (const feature of options.features ?? []) {
+        if (!featureFlags.includes(feature)) {
+          v = false;
+        }
       }
     }
   }
