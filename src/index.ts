@@ -140,7 +140,7 @@ export class Launcher extends EventEmitter<Events> {
       this.emit("data", data.toString("utf-8")),
     );
     minecraft.stderr.on("data", (data) =>
-      this.emit("data", data.toString("utf-8")),
+      this.emit("data-error", data.toString("utf-8")),
     );
     minecraft.on("close", (code) => this.emit("close", code));
     return minecraft;

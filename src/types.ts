@@ -121,6 +121,8 @@ export type Events = {
   warn: [string];
 
   data: [string];
+  "data-error": [string];
+
   progress: [ProgressPayload];
   close: [number | null];
 };
