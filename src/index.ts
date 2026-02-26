@@ -155,6 +155,13 @@ export class Launcher extends EventEmitter<Events> {
   }
 
   /**
+   * @returns {Promise<string[]>} The launch options
+   */
+  public async getLaunchArguments(launchOptions: LaunchOptions): Promise<string[]> {
+    return (await this.getHandler()).args(launchOptions);
+  }
+
+  /**
    * Launches the game
    * Will execute necessary tasks if `prepare` hasn't been called
    * @returns {Promise<ChildProcess>} the game child process
@@ -162,8 +169,10 @@ export class Launcher extends EventEmitter<Events> {
   public async launch(launchOptions: LaunchOptions): Promise<ChildProcess> {
     this.log("Launching");
 
-    const args = await (await this.getHandler()).args(launchOptions);
-    return this.spawnProcess(launchOptions, args);
+    return this.spawnProcess(
+      launchOptions,
+      await this.getLaunchArguments(launchOptions),
+    );
   }
 
   /**
@@ -190,8 +199,10 @@ export class Launcher extends EventEmitter<Events> {
   /**
    * Download java as part of the prepare/launch process
    * Will automatically set java path for launching unless overwritten in `LaunchOptions`
+   *
+   * @returns {Promise<string>} The path to the java/javaw executable
    */
-  public async javaTasks(javaDirectory: string, javaTarget?: JavaTarget) {
+  public async javaTasks(javaDirectory: string, javaTarget?: JavaTarget): Promise<string> {
     const target = javaTarget ?? getJavaTarget();
     const javaVersion = await this.getJavaVersion();
 
@@ -211,6 +222,8 @@ export class Launcher extends EventEmitter<Events> {
         process.platform == "win32" ? "javaw.exe" : "java",
       ),
     );
+
+    return this.javaPath;
   }
 
   log(message: string) {
