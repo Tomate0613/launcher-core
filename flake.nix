@@ -43,11 +43,11 @@
 
                 ## glfw
                 libGL
-                xorg.libX11
-                xorg.libXcursor
-                xorg.libXext
-                xorg.libXrandr
-                xorg.libXxf86vm
+                libx11
+                libxcursor
+                libxext
+                libxrandr
+                libxxf86vm
 
                 ## Old minecraft (pre-1.8)
                 libxrender
