@@ -1,9 +1,6 @@
 import path from "node:path";
 import { promises as fs } from "node:fs";
-import {
-  Version,
-  LauncherOptions,
-} from "./types";
+import { Version, LauncherOptions } from "./types";
 import { Launcher } from ".";
 import { DownloadManager } from "./downloads";
 import { Paths } from "./paths";
@@ -35,18 +32,20 @@ export class ForgeHandler {
   }
 
   private fwAddArgs(mcPath: string) {
-    const forgeWrapperAgrs = [
+    const forgeWrapperArgs = [
       `-Dforgewrapper.librariesDir=${this.paths.librariesPath}`,
       `-Dforgewrapper.installer=${this.options.forge}`,
       `-Dforgewrapper.minecraft=${mcPath}`,
     ];
-    this.options.customArgs
-      ? (this.options.customArgs =
-          this.options.customArgs.concat(forgeWrapperAgrs))
-      : (this.options.customArgs = forgeWrapperAgrs);
+
+    this.launcher.forgeJvmArguments = forgeWrapperArgs;
   }
 
-  async getForgedWrapped(version: Version, mcPath: string, versionPath: string) {
+  async getForgedWrapped(
+    version: Version,
+    mcPath: string,
+    versionPath: string,
+  ) {
     let installerJson = null;
     // Since we're building a proper "custom" JSON that will work nativly with MCLC, the version JSON will not
     // be re-generated on the next run.
@@ -182,7 +181,8 @@ export class ForgeHandler {
             `-${jarEnding}.jar`,
           );
         newJson.libraries[0].downloads.artifact.url =
-          this.launcher.urls.mavenForge + newJson.libraries[0].downloads.artifact.path;
+          this.launcher.urls.mavenForge +
+          newJson.libraries[0].downloads.artifact.path;
       }
     } else {
       delete newJson.libraries[0];

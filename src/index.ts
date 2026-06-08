@@ -33,6 +33,15 @@ export class Launcher extends EventEmitter<Events> {
 
   private handler?: Handler;
 
+
+  /**
+   * Temporary
+   *
+   * @internal
+   * @deprecated
+   */
+  forgeJvmArguments?: string[];
+
   urls = {
     resource: "https://resources.download.minecraft.net",
     mavenForge: "https://files.minecraftforge.net/maven/",

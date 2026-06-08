@@ -210,11 +210,6 @@ export type LauncherOptions = {
   gameDirectory?: string;
 
   /**
-   * Array of custom Java arguments
-   */
-  customArgs?: string[];
-
-  /**
    * Array of game argument feature flags
    */
   features?: Array<string>;

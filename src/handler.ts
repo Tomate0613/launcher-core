@@ -218,7 +218,6 @@ export class Handler {
       if (isAfter("1.12", this.vanillaVersion.id)) jvm.push(q);
     } else jvm.push(q);
 
-    if (this.options.customArgs) jvm = jvm.concat(this.options.customArgs);
     if (this.options.log4jConfigurationFile) {
       jvm.push(
         `-Dlog4j.configurationFile=${path.resolve(this.options.log4jConfigurationFile)}`,
@@ -240,6 +239,10 @@ export class Handler {
           jvm.push("-Dlog4j.configurationFile=log4j2_17-111.xml");
         }
       }
+    }
+
+    if (this.launcher.forgeJvmArguments) {
+      jvm = jvm.concat(this.launcher.forgeJvmArguments);
     }
 
     if (launchOptions.customJvmArgs) {
