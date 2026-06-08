@@ -50,14 +50,17 @@ export async function getLaunchOptions(
 
   // This is a bit of a hack. I am sure there is a better way to do this
   const minArgs = /*this.options.overrides.minArgs ||*/ isLegacy ? 5 : 11;
-  if (args.length < minArgs)
+  if (args.length < minArgs) {
     args = args.concat(
       version.minecraftArguments
         ? version.minecraftArguments.split(" ")
         : version.arguments.game,
     );
-  if (launchOptions.customLaunchArgs)
+  }
+
+  if (launchOptions.customLaunchArgs) {
     args = args.concat(launchOptions.customLaunchArgs);
+  }
 
   launchOptions.authorization = await Promise.resolve(
     launchOptions.authorization,
@@ -153,4 +156,3 @@ export async function getLaunchOptions(
 
   return args as string[];
 }
-
