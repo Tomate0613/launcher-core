@@ -242,6 +242,10 @@ export class Handler {
       }
     }
 
+    if (launchOptions.customJvmArgs) {
+      jvm = jvm.concat(launchOptions.customJvmArgs);
+    }
+
     return jvm;
   }
 

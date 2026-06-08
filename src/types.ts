@@ -290,6 +290,10 @@ export type LaunchOptions = {
    * Array of custom Minecraft arguments.
    */
   customLaunchArgs?: string[];
+  /**
+   * Array of custom jvm arguments.
+   */
+  customJvmArgs?: string[];
 
   memory: {
     /**
