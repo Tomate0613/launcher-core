@@ -9,7 +9,8 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "src/**/*"
