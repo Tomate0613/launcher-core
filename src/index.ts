@@ -246,7 +246,7 @@ export class Launcher extends EventEmitter<Events> {
 
 export * from "./types";
 export * from "./downloads";
-export { Task, TasksError } from "./tasks";
+export { type Task, TasksError } from "./tasks";
 export {
   isAfter as isMinecraftVersionAfter,
   isBefore as isMinecraftVersionBefore,
