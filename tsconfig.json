@@ -14,7 +14,7 @@
     "declaration": true,
     "declarationMap": true,
 
-    "rootDir": "./",
+    "rootDir": "./src",
 
     "isolatedModules": true,
     "ignoreDeprecations": "6.0",
