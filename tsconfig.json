@@ -20,5 +20,8 @@
     "ignoreDeprecations": "6.0",
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force"
-  }
+  },
+  "includes": [
+    "src/**/*"
+  ]
 }
