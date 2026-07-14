@@ -24,7 +24,7 @@ import { getJavaTarget } from "./os";
 import EventEmitter from "node:events";
 
 export class Launcher extends EventEmitter<Events> {
-  tasks: TaskManager;
+  private tasks: TaskManager;
 
   private paths: Paths;
   private javaPath = "java";
@@ -215,19 +215,20 @@ export class Launcher extends EventEmitter<Events> {
   public async javaTasks(
     javaDirectory: string,
     javaTarget?: JavaTarget,
+    javaVersion?: JavaVersion,
   ): Promise<string> {
     const target = javaTarget ?? getJavaTarget();
-    const javaVersion = await this.getJavaVersion();
+    const version = javaVersion ?? await this.getJavaVersion();
 
     await javaTasks(
       target,
       this.api,
       this.tasks,
       javaDirectory,
-      javaVersion.component,
+      version.component,
     );
 
-    const installationPath = path.join(javaDirectory, javaVersion.component);
+    const installationPath = path.join(javaDirectory, version.component);
     this.javaPath = path.resolve(
       path.join(
         installationPath,
@@ -257,4 +258,4 @@ export {
   isBetween as isMinecraftVersionBetween,
 } from "./versions";
 export * as java from "./java";
-export * as os from './os';
+export * as os from "./os";
