@@ -24,7 +24,7 @@ import { getJavaTarget } from "./os";
 import EventEmitter from "node:events";
 
 export class Launcher extends EventEmitter<Events> {
-  private tasks: TaskManager;
+  tasks: TaskManager;
 
   private paths: Paths;
   private javaPath = "java";
@@ -251,11 +251,9 @@ export class Launcher extends EventEmitter<Events> {
 
 export * from "./types";
 export * from "./downloads";
-export { type Task, TasksError, TaskManager } from "./tasks";
+export { type Task, TasksError, type TaskManager } from "./tasks";
 export {
   isAfter as isMinecraftVersionAfter,
   isBefore as isMinecraftVersionBefore,
   isBetween as isMinecraftVersionBetween,
 } from "./versions";
-export * as java from "./java";
-export * as os from "./os";
