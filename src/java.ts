@@ -41,6 +41,7 @@ export type JavaVersionComponent =
   | "java-runtime-delta"
   | "java-runtime-gamma"
   | "java-runtime-gamma-snapshot"
+  | "java-runtime-epsilon"
   | "jre-legacy"
   | "minecraft-java-exe";
 
