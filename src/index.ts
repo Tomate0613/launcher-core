@@ -24,7 +24,7 @@ import { getJavaTarget } from "./os";
 import EventEmitter from "node:events";
 
 export class Launcher extends EventEmitter<Events> {
-  private tasks: TaskManager;
+  tasks: TaskManager;
 
   private paths: Paths;
   private javaPath = "java";
