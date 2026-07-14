@@ -271,7 +271,7 @@ export type LauncherOptions = {
   fw?: {
     baseUrl?: string;
     version?: string;
-    sh1?: string;
+    sha1?: string;
     size?: number;
   };
 };

@@ -108,7 +108,7 @@ export class ForgeHandler {
             artifact: {
               path: [...fwPathArr, fwName].join("/"),
               url: `${this.launcher.fw.baseUrl}${this.launcher.fw.version}/${fwName}`,
-              sha1: this.launcher.fw.sh1,
+              sha1: this.launcher.fw.sha1,
               size: this.launcher.fw.size,
             },
           },

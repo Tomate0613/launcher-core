@@ -33,7 +33,6 @@ export class Launcher extends EventEmitter<Events> {
 
   private handler?: Handler;
 
-
   /**
    * Temporary
    *
@@ -52,7 +51,7 @@ export class Launcher extends EventEmitter<Events> {
   fw = {
     baseUrl: "https://github.com/ZekerZhayard/ForgeWrapper/releases/download/",
     version: "1.6.0",
-    sh1: "035a51fe6439792a61507630d89382f621da0f1f",
+    sha1: "035a51fe6439792a61507630d89382f621da0f1f",
     size: 28679,
   };
 
@@ -166,7 +165,9 @@ export class Launcher extends EventEmitter<Events> {
   /**
    * @returns {Promise<string[]>} The launch options
    */
-  public async getLaunchArguments(launchOptions: LaunchOptions): Promise<string[]> {
+  public async getLaunchArguments(
+    launchOptions: LaunchOptions,
+  ): Promise<string[]> {
     return (await this.getHandler()).args(launchOptions);
   }
 
@@ -211,7 +212,10 @@ export class Launcher extends EventEmitter<Events> {
    *
    * @returns {Promise<string>} The path to the java/javaw executable
    */
-  public async javaTasks(javaDirectory: string, javaTarget?: JavaTarget): Promise<string> {
+  public async javaTasks(
+    javaDirectory: string,
+    javaTarget?: JavaTarget,
+  ): Promise<string> {
     const target = javaTarget ?? getJavaTarget();
     const javaVersion = await this.getJavaVersion();
 
@@ -246,9 +250,11 @@ export class Launcher extends EventEmitter<Events> {
 
 export * from "./types";
 export * from "./downloads";
-export { type Task, TasksError } from "./tasks";
+export { type Task, TasksError, TaskManager } from "./tasks";
 export {
   isAfter as isMinecraftVersionAfter,
   isBefore as isMinecraftVersionBefore,
   isBetween as isMinecraftVersionBetween,
 } from "./versions";
+export * as java from "./java";
+export * as os from './os';
