@@ -11,6 +11,7 @@
   "dependencies": {
     "examples": "link:",
     "msmc": "^5.0.5",
-    "tomate-launcher-core": "link:.."
+    "tomate-launcher-core": "link:..",
+    "tomate-loaders": "github:Tomate0613/tomate-loaders"
   }
 }

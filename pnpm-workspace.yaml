@@ -1,3 +1,4 @@
 allowBuilds:
   tomate-loaders: true
   esbuild: true
+  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/681c60c017b9f8cdf38c135edb10f22761836646: true

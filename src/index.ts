@@ -8,12 +8,12 @@ import {
   LauncherOptions,
   LaunchOptions,
   Version as Version,
+  VersionManifest,
 } from "./types";
 import { ForgeHandler } from "./forge";
 import { DownloadManager } from "./downloads";
 import { getPaths, Paths } from "./paths";
 import { Handler } from "./handler";
-import { vanilla } from "tomate-loaders";
 import {
   JavaTarget,
   javaTasks,
@@ -42,6 +42,8 @@ export class Launcher extends EventEmitter<Events> {
   forgeJvmArguments?: string[];
 
   urls = {
+    versionManifest:
+      "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json",
     resource: "https://resources.download.minecraft.net",
     mavenForge: "https://files.minecraftforge.net/maven/",
     defaultRepoForge: "https://libraries.minecraft.net/",
@@ -69,8 +71,23 @@ export class Launcher extends EventEmitter<Events> {
 
   private vanillaVersion() {
     return this.api.json<Version>({
-      url: async () =>
-        (await vanilla.getVersion(this.options.version.number)).url,
+      url: async () => {
+        const manifest = (
+          await this.api.get<VersionManifest>(this.urls.versionManifest)
+        ).data;
+
+        const version = manifest.versions.find(
+          (version) => version.id === this.options.version.number,
+        );
+
+        if (!version) {
+          throw new Error(
+            `Version "${this.options.version.number}" could not be found`,
+          );
+        }
+
+        return version.url;
+      },
       path: this.paths.vanillaVersionJsonPath,
       type: "manifest",
     });
@@ -218,7 +235,7 @@ export class Launcher extends EventEmitter<Events> {
     javaVersion?: JavaVersion,
   ): Promise<string> {
     const target = javaTarget ?? getJavaTarget();
-    const version = javaVersion ?? await this.getJavaVersion();
+    const version = javaVersion ?? (await this.getJavaVersion());
 
     await javaTasks(
       target,

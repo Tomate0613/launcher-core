@@ -111,6 +111,19 @@ export type Version = {
   forgeWrapperVersion?: string;
 };
 
+export type VersionManifest = {
+  latest: { release: string; snapshot: string };
+  versions: {
+    id: string;
+    type: "snapshot" | "release";
+    url: string;
+    time: string;
+    releaseTime: string;
+    sha1: string;
+    complianceLevel: number;
+  }[];
+};
+
 export type JavaVersion = {
   component: JavaVersionComponent;
   majorVersion: number;

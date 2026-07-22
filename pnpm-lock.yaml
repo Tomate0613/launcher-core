@@ -13,7 +13,7 @@ importers:
         version: 0.5.17
       axios:
         specifier: ^1.18.0
-        version: 1.18.0
+        version: 1.18.0(debug@4.4.3)
       tomate-launcher-core:
         specifier: 'link:'
         version: 'link:'
@@ -36,9 +36,6 @@ importers:
       multi-progress-bars:
         specifier: ^5.0.3
         version: 5.0.3
-      tomate-loaders:
-        specifier: github:Tomate0613/tomate-loaders
-        version: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/e5d7e3478d36bed4ad6438d75f58de25f1cac389
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -59,9 +56,6 @@ packages:
 
   '@types/node@26.0.0':
     resolution: {integrity: sha512-vf2YFi1iY9lHGwNJMs01biZFbKJkrZR1T6/MlzjhJLPdntOHLhTrDSnSVcdtvjihi4VQNlrFRIxLsDBlQpAipA==}
-
-  '@types/xml2js@0.4.14':
-    resolution: {integrity: sha512-4YnrRemBShWRO2QjvUin8ESA41rH+9nQGLUGZV/1IDhi3SL9OhdpNC/MrulTWuptXKwhx/aDxE7toV0f/ypIXQ==}
 
   adm-zip@0.5.17:
     resolution: {integrity: sha512-+Ut8d9LLqwEvHHJl1+PIHqoyDxFgVN847JTVM3Izi3xHDWPE4UtzzXysMZQs64DMcrJfBeS/uoEP4AD3HQHnQQ==}
@@ -214,10 +208,6 @@ packages:
     resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
     engines: {node: '>=10'}
 
-  sax@1.6.0:
-    resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
-    engines: {node: '>=11.0.0'}
-
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -234,10 +224,6 @@ packages:
     resolution: {integrity: sha512-cXNxvT8dFNRVfhVME3JAe98mkXDYN2O1l7jmcwMnOslDeESg1rF/OZMtK0nRAhiari1unG5cD4jG3rapUAkLbw==}
     engines: {node: '>=12'}
 
-  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/e5d7e3478d36bed4ad6438d75f58de25f1cac389:
-    resolution: {gitHosted: true, integrity: sha512-B95kqarXgT8StYoyEcwWuWzpNiFkNQxzUNPjP0MzZlis8o52chW+aAzko3h3zYjrnlKGm414151M7MuJgzu1EA==, tarball: https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/e5d7e3478d36bed4ad6438d75f58de25f1cac389}
-    version: 2.0.2
-
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -253,14 +239,6 @@ packages:
     resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
     hasBin: true
 
-  xml2js@0.6.2:
-    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
-    engines: {node: '>=4.0.0'}
-
-  xmlbuilder@11.0.1:
-    resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
-    engines: {node: '>=4.0'}
-
 snapshots:
 
   '@types/adm-zip@0.5.8':
@@ -274,10 +252,6 @@ snapshots:
   '@types/node@26.0.0':
     dependencies:
       undici-types: 8.3.0
-
-  '@types/xml2js@0.4.14':
-    dependencies:
-      '@types/node': 26.0.0
 
   adm-zip@0.5.17: {}
 
@@ -293,9 +267,9 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.18.0:
+  axios@1.18.0(debug@4.4.3):
     dependencies:
-      follow-redirects: 1.16.0
+      follow-redirects: 1.16.0(debug@4.4.3)
       form-data: 4.0.5
       https-proxy-agent: 5.0.1
       proxy-from-env: 2.1.0
@@ -351,7 +325,9 @@ snapshots:
       has-tostringtag: 1.0.2
       hasown: 2.0.4
 
-  follow-redirects@1.16.0: {}
+  follow-redirects@1.16.0(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
 
   form-data@4.0.5:
     dependencies:
@@ -420,8 +396,6 @@ snapshots:
 
   proxy-from-env@2.1.0: {}
 
-  sax@1.6.0: {}
-
   string-width@4.2.3:
     dependencies:
       emoji-regex: 8.0.0
@@ -442,15 +416,6 @@ snapshots:
     dependencies:
       ansi-regex: 6.2.2
 
-  tomate-loaders@https://codeload.github.com/Tomate0613/tomate-loaders/tar.gz/e5d7e3478d36bed4ad6438d75f58de25f1cac389:
-    dependencies:
-      '@types/xml2js': 0.4.14
-      axios: 1.18.0
-      xml2js: 0.6.2
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
   tslib@2.8.1: {}
 
   typescript@6.0.3: {}
@@ -458,10 +423,3 @@ snapshots:
   undici-types@8.3.0: {}
 
   uuid@14.0.1: {}
-
-  xml2js@0.6.2:
-    dependencies:
-      sax: 1.6.0
-      xmlbuilder: 11.0.1
-
-  xmlbuilder@11.0.1: {}
