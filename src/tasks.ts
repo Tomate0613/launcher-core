@@ -1,7 +1,6 @@
 import { Launcher } from ".";
 import { DownloadManager } from "./downloads";
 import { ProgressEventName } from "./types";
-import Zip from "adm-zip";
 import path from "node:path";
 import { type Mode, promises as fs } from "node:fs";
 
@@ -152,7 +151,7 @@ export class TaskManager {
         });
 
         try {
-          new Zip(task.target).extractAllTo(path.dirname(task.target), true);
+          new (await import('adm-zip')).default(task.target).extractAllTo(path.dirname(task.target), true);
         } catch (e) {
           // Only doing a warn since a stupid error happens. You can basically ignore this.
           // if it says Invalid file name, just means two files were downloaded and both were deleted.

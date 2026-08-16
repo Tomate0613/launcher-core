@@ -4,7 +4,6 @@ import { Version, LauncherOptions } from "./types";
 import { Launcher } from ".";
 import { DownloadManager } from "./downloads";
 import { Paths } from "./paths";
-import Zip from "adm-zip";
 import { cleanUp, ensureDirectoryExists, tryParseJson } from "./utils";
 import { isAfter } from "./versions";
 
@@ -70,7 +69,7 @@ export class ForgeHandler {
     }
 
     this.log("Generating Forge version json, this might take a bit");
-    const zipFile = new Zip(this.options.forge);
+    const zipFile = new (await import('adm-zip')).default(this.options.forge);
     const text = zipFile.readAsText("version.json");
     if (zipFile.getEntry("install_profile.json")) {
       installerJson = zipFile.readAsText("install_profile.json");
