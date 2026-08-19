@@ -51,10 +51,10 @@ export class Launcher extends EventEmitter<Events> {
   };
 
   fw = {
-    baseUrl: "https://github.com/ZekerZhayard/ForgeWrapper/releases/download/",
-    version: "1.6.0",
-    sha1: "035a51fe6439792a61507630d89382f621da0f1f",
-    size: 28679,
+    baseUrl: "https://github.com/Tomate0613/forge-wrapper/releases/download/",
+    version: "tomate-2026-08-19",
+    sha1: "0eff0e0701466436bcaa547832f7bf5fc0619399",
+    size: 29800,
   };
 
   constructor(public options: LauncherOptions) {
