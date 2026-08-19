@@ -1,11 +1,16 @@
 import path from "node:path";
 import { IncomingMessage } from "node:http";
-import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
+import axios, {
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+} from "axios";
 import EventEmitter from "node:events";
 import { ProgressEventName } from "./types";
 import {
   checkFile,
   ensureDirectoryExists,
+  getHash,
   parseJson,
   tryParseJson,
 } from "./utils";
@@ -249,7 +254,13 @@ export class DownloadManager extends EventEmitter<DownloadEvents> {
       });
 
       if (hash && !(await checkFile(tempPath, hash))) {
-        throw new Error("File hash mismatch");
+        if (fsSync.existsSync(tempPath)) {
+          throw new Error(
+            `File hash mismatch, Expected ${hash} and found ${await getHash(tempPath)}`,
+          );
+        }
+
+        throw new Error(`Failed to download ${url}`);
       }
 
       await fs.rename(tempPath, outputPath);
