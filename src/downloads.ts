@@ -90,10 +90,10 @@ export class DownloadManager extends EventEmitter<DownloadEvents> {
       axiosInstance || axios.create({ httpAgent, httpsAgent });
   }
 
-  public get<T = any, R = AxiosResponse<T>, D = any>(
+  public get<T = any, D = any, P = any>(
     url: string,
-    config?: AxiosRequestConfig<D>,
-  ): Promise<R> {
+    config?: AxiosRequestConfig<D, P>,
+  ): Promise<AxiosResponse<T, D>> {
     return this.axiosInstance.get(url, config);
   }
 
