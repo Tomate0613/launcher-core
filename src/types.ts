@@ -232,7 +232,7 @@ export type LauncherOptions = {
    * However it is still ensured that the hash is correct on the first download.
    * Half downloaded files should not be an issue either, since they have a different name while downloading
    */
-  skipHashChecks?: boolean;
+  skipHashChecks?: boolean | ((ctx: ProgressEventName) => boolean);
 
   paths?: {
     /**

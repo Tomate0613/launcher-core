@@ -123,13 +123,18 @@ export class TaskManager {
   }
 
   private async executeTask(task: Task) {
+    const assumeSkip =
+      (typeof this.launcher.options.skipHashChecks === "function"
+        ? this.launcher.options.skipHashChecks(task.ctx)
+        : this.launcher.options.skipHashChecks) || !task.hash;
+
     if (task.type == "file") {
       return this.downloadManager.download({
         url: task.url,
         type: task.ctx,
         outputPath: task.target,
         hash: task.hash ?? undefined,
-        assumeSkip: this.launcher.options.skipHashChecks || !task.hash,
+        assumeSkip,
       });
     }
     if (task.type == "file-unzip") {
@@ -147,11 +152,14 @@ export class TaskManager {
           type: task.ctx,
           outputPath: task.target,
           hash: task.hash ?? undefined,
-          assumeSkip: this.launcher.options.skipHashChecks || !task.hash,
+          assumeSkip,
         });
 
         try {
-          new (await import('adm-zip')).default(task.target).extractAllTo(path.dirname(task.target), true);
+          new (await import("adm-zip")).default(task.target).extractAllTo(
+            path.dirname(task.target),
+            true,
+          );
         } catch (e) {
           // Only doing a warn since a stupid error happens. You can basically ignore this.
           // if it says Invalid file name, just means two files were downloaded and both were deleted.
@@ -171,7 +179,7 @@ export class TaskManager {
         type: task.ctx,
         outputPath: task.target,
         hash: task.hash ?? undefined,
-        assumeSkip: this.launcher.options.skipHashChecks || !task.hash,
+        assumeSkip,
       });
 
       await fs.chmod(task.target, task.mode);
