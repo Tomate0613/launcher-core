@@ -27,7 +27,12 @@ export class Launcher extends EventEmitter<Events> {
   tasks: TaskManager;
 
   private paths: Paths;
-  private javaPath = "java";
+
+  /**
+   * TODO
+   * @internal
+   */
+  javaPath = "java";
 
   private api: DownloadManager;
 
@@ -200,6 +205,10 @@ export class Launcher extends EventEmitter<Events> {
       launchOptions,
       await this.getLaunchArguments(launchOptions),
     );
+  }
+
+  public async launchSummary(launchOptions: LaunchOptions) {
+    return (await this.getHandler()).summary(launchOptions);
   }
 
   /**
