@@ -190,7 +190,27 @@ export class Handler {
     this.launcher.warn(msg);
   }
 
-  private jvmArgs(launchOptions: LaunchOptions) {
+  private log4jConfigurationFile() {
+    if (this.options.log4jConfigurationFile) {
+      return this.options.log4jConfigurationFile;
+    }
+
+    // Log4Shell
+    // https://help.minecraft.net/hc/en-us/articles/4416199399693-Security-Vulnerability-in-Minecraft-Java-Edition
+    // This is not really needed given a save java version or when using vanilla, but it also can't hurt
+    // TODO Find the exact versions instead of using 1.17, 1.12
+    if (isBefore("1.17", this.vanillaVersion.id)) {
+      if (!this.options.log4jConfigurationFile) {
+        if (isAfter("1.12", this.vanillaVersion.id)) {
+          return "log4j2_112-116.xml";
+        } else if (isAfter("13w39a", this.vanillaVersion.id)) {
+          return "log4j2_17-111.xml";
+        }
+      }
+    }
+  }
+
+  private nativesDirectory() {
     let nativesDirectory: string;
     if (isAfter("1.19", this.vanillaVersion.id)) {
       nativesDirectory = /*this.options.overrides.cwd ||*/ this.options.root;
@@ -198,12 +218,15 @@ export class Handler {
       nativesDirectory = this.paths.legacyNativesDirectoryPath;
     }
 
+    return nativesDirectory;
+  }
+
+  private jvmArgs(launchOptions: LaunchOptions) {
     let jvm = [
       "-XX:-UseAdaptiveSizePolicy",
       "-XX:-OmitStackTraceInFastThrow",
       "-Dfml.ignorePatchDiscrepancies=true",
       "-Dfml.ignoreInvalidMinecraftCertificates=true",
-      `-Djava.library.path=${nativesDirectory}`,
       `-Xmx${launchOptions.memory.max}`,
       `-Xms${launchOptions.memory.min}`,
     ];
@@ -218,27 +241,17 @@ export class Handler {
       if (isAfter("1.12", this.vanillaVersion.id)) jvm.push(q);
     } else jvm.push(q);
 
+    const log4jConfigurationFile = this.log4jConfigurationFile();
     if (this.options.log4jConfigurationFile) {
-      jvm.push(
-        `-Dlog4j.configurationFile=${path.resolve(this.options.log4jConfigurationFile)}`,
-      );
+      jvm.push(`-Dlog4j.configurationFile=${log4jConfigurationFile}`);
     }
 
     // Log4Shell
     // https://help.minecraft.net/hc/en-us/articles/4416199399693-Security-Vulnerability-in-Minecraft-Java-Edition
     // This is not really needed given a save java version or when using vanilla, but it also can't hurt
-    // TODO Find the exact versions instead of using 1.17, 1.12
+    // TODO Find the exact versions
     if (isBetween("1.17", "1.18.1-rc2", this.vanillaVersion.id)) {
       jvm.push("-Dlog4j2.formatMsgNoLookups=true");
-    }
-    if (isBefore("1.17", this.vanillaVersion.id)) {
-      if (!this.options.log4jConfigurationFile) {
-        if (isAfter("1.12", this.vanillaVersion.id)) {
-          jvm.push("-Dlog4j.configurationFile=log4j2_112-116.xml");
-        } else if (isAfter("13w39a", this.vanillaVersion.id)) {
-          jvm.push("-Dlog4j.configurationFile=log4j2_17-111.xml");
-        }
-      }
     }
 
     if (this.launcher.forgeJvmArguments) {
@@ -252,24 +265,29 @@ export class Handler {
     return jvm;
   }
 
-  private classPathsArgs() {
+  private classpath() {
     const classes = cleanUp(this.libraries.libs);
-    const classPaths = ["-cp"];
+
+    // So mods like fabric work.
+    const jar = fsSync.existsSync(this.paths.vanillaJarPath)
+      ? `${this.paths.vanillaJarPath}`
+      : `${path.join(this.paths.customVersionDirectoryPath, `${this.options.version.number}.jar`)}`;
+
+    return ([] as string[]).concat(
+      !!this.options.forge ? [this.options.forge] : [],
+      classes,
+      jar,
+    );
+  }
+
+  private classPathsArgs() {
+    const args = ["-cp"];
     const separator = path.delimiter;
     this.log(`Using ${separator} to separate class paths`);
 
-    // Handling launch arguments.
-    const file = this.modifyJson || this.vanillaVersion;
-    // So mods like fabric work.
-    const jar = fsSync.existsSync(this.paths.vanillaJarPath)
-      ? `${separator}${this.paths.vanillaJarPath}`
-      : `${separator}${path.join(this.paths.customVersionDirectoryPath, `${this.options.version.number}.jar`)}`;
-    classPaths.push(
-      `${this.options.forge ? this.options.forge + separator : ""}${classes.join(separator)}${jar}`,
-    );
-    classPaths.push(file.mainClass);
+    args.push(`${this.classpath().join(separator)}`);
 
-    return classPaths;
+    return args;
   }
 
   isLegacy() {
@@ -299,12 +317,32 @@ export class Handler {
       await this.taskManager.execute();
     }
 
-    const args: string[] = [];
+    const file = this.modifyJson || this.vanillaVersion;
 
-    return args.concat(
+    return ([] as string[]).concat(
       this.jvmArgs(launchOptions),
+      [`-Djava.library.path=${this.nativesDirectory()}`],
       this.classPathsArgs(),
+      [file.mainClass],
       await this.launchArgs(launchOptions),
     );
+  }
+
+  async summary(launchOptions: LaunchOptions) {
+    if (!this.taskManager.isDone) {
+      await this.taskManager.execute();
+    }
+
+    return {
+      rootPath: this.options.root,
+      jrePath: launchOptions.javaPath ?? this.launcher.javaPath,
+      classpath: this.classpath(),
+      nativesPath: this.nativesDirectory(),
+      assetsPath: this.paths.assetsPath,
+      extraReadonly: [this.log4jConfigurationFile()],
+      jvmArgs: this.jvmArgs(launchOptions),
+      mainClass: this.modifyJson || this.vanillaVersion,
+      mainClassArgs: await this.launchArgs(launchOptions),
+    };
   }
 }
