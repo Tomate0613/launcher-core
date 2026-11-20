@@ -337,7 +337,7 @@ export class Handler {
 
     return {
       rootPath: this.options.root,
-      jrePath: launchOptions.javaPath ?? this.launcher.javaPath,
+      javaPath: launchOptions.javaPath ?? this.launcher.javaPath,
       classpath: this.classpath(),
       nativesPath: this.nativesDirectory(),
       assetsPath: this.paths.assetsPath,
