@@ -360,7 +360,7 @@ export type LaunchOptions = {
   detached?: boolean;
 };
 
-type Authorization = {
+export type Authorization = {
   access_token: string;
   client_token?: string;
   uuid: string;
